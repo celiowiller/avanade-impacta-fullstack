@@ -38,13 +38,15 @@ public class SensorEntity {
 	private String nome;
 	
 	private String localizacao;
-	
-	@Enumerated(EnumType.STRING)
-	@Column(nullable = false)
-	private TipoSensor sensor;
+		
 	
 	@Column(nullable = false)
 	private boolean ativo;
+	
+	@Enumerated(EnumType.STRING)
+	@Column(nullable = false)
+	//private TipoSensor sensor;
+	private TipoSensor tipo;
 	
 	// ADICIONAR OS MAPEAMENTOS PARA PREVINIR O POTENCIAL ERRO 500
 	
