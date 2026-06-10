@@ -13,6 +13,6 @@ public interface SensorLocalizacaoRepository {
 	
 	Optional<SensorLocalizacao> buscarPorSensorEData(String sensorId, LocalDateTime data);
 	
-	List<SensorLocalizacao> buscarTodosPorSensor(SensorLocalizacao sensorId);
+	List<SensorLocalizacao> buscarTodosPorSensor(String sensorId);
 	
 }

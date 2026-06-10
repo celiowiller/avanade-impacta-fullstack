@@ -4,9 +4,12 @@ import java.time.LocalDateTime;
 
 import com.agro.sensores.domain.exception.RegraNegocioException;
 
+import lombok.Getter;
+
 // o proposito, aqui, é definir propriedades que serão "tratadas" para 
 // observar e estabelecer valores de um mesmo sensor quando ele muda de
 // posição 
+@Getter
 public class SensorLocalizacao {
 	
 	private String id;
