@@ -15,7 +15,7 @@ import lombok.RequiredArgsConstructor;
 // esta classe será responsavel por cadastrar usuarios no sistema
 // todo o UseCase é, fundamentalmente, um Service 
 @Service 
-//@Validated
+@Validated
 /*
  para que o Springframework intercepte a chamada do método e valide os dados 
  antes de executar a lógica de cadastro, nossa classe @Service precisa ser anotada

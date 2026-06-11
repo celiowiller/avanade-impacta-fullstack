@@ -52,11 +52,6 @@ public class AutenticarUsuarioUseCase {
 		
 		// retornar nosso token - a partir da chamada do método gerarToken()
 		return tkService.gerarToken(usuario);
-	}
-	
-	
-	
-	
-	
+	}	
 
 }

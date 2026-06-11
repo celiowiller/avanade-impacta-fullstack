@@ -4,6 +4,7 @@ import org.springframework.stereotype.Component;
 
 import com.agro.sensores.domain.models.Leitura;
 import com.agro.sensores.domain.models.Sensor;
+import com.agro.sensores.domain.repository.LeituraRepository;
 import com.agro.sensores.infra.persistence.entity.LeituraEntity;
 import com.agro.sensores.infra.persistence.entity.SensorEntity;
 import com.agro.sensores.infra.persistence.repository.JpaSensorLocalizacaoRepository;

@@ -52,7 +52,7 @@ public class SensorLocalizacao {
 	// uma nova 
 	public void encerrar(LocalDateTime dataEncerramento) {
 		if(this.dataFim != null) {
-			throw new RegraNegocioException("Esta localização já foi encerrada"!);
+			throw new RegraNegocioException("Esta localização já foi encerrada!");
 		}
 		this.dataFim = dataEncerramento;
 	}
