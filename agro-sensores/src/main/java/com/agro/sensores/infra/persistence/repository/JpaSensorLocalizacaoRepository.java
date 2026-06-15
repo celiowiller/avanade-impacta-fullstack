@@ -14,7 +14,7 @@ public interface JpaSensorLocalizacaoRepository extends JpaRepository<SensorLoca
 String> {
 	// definir um  método custom para recuperar um sensor pela data de 
 	// inicio e fim de um determinada localização
-	Optional<SensorLocalizacaoEntity>  findFirstBySensor_IdDataInic(String sensorId);
+	Optional<SensorLocalizacaoEntity>  findFirstBySensor_IdOrderByDataInicioDesc(String sensorId);
 	
 	// aqui, o recurso Optional<T> é utilizado para evitar o famigerado 
 	// NUllPointerException
@@ -38,7 +38,7 @@ String> {
 	// exatamente, deve ser executado!
 	
 	// vamos listar as localizações 
-	List<SensorLocalizacaoEntity> findAllBySensor_IdOrderDataInic(String sensorId);	
+	List<SensorLocalizacaoEntity> findAllBySensor_IdOrderByDataInicioAsc(String sensorId);	
 
 }
 

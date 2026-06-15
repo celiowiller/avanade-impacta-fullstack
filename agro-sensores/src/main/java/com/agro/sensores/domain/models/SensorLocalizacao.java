@@ -21,7 +21,7 @@ public class SensorLocalizacao {
 	// definir o construtor e inicializar as propriedades
 	public SensorLocalizacao(
 				String id,
-				String sensoId,
+				String sensorId,
 				String localizacao,
 				LocalDateTime dataInicio,
 				LocalDateTime dataFim

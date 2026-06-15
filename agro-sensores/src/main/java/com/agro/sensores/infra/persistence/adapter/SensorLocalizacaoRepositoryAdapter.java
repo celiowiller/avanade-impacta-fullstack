@@ -31,7 +31,7 @@ public class SensorLocalizacaoRepositoryAdapter implements SensorLocalizacaoRepo
 	// 2. implementar o método para buscar os sensores ativos
 	@Override
 	public Optional<SensorLocalizacao> buscarAtivaPorSensor(String sensorId){
-		return jpa.findFirstBySensor_IdDataInic(sensorId).map(this::toDomain);
+		return jpa.findFirstBySensor_IdOrderByDataInicioDesc(sensorId).map(this::toDomain);
 	}
 	
 	// 3. implementar a busca por sensor e data
@@ -43,7 +43,7 @@ public class SensorLocalizacaoRepositoryAdapter implements SensorLocalizacaoRepo
 	// 4. implementar a busca de todos os sensores
 	@Override
 	public List<SensorLocalizacao> buscarTodosPorSensor(String sensorId){
-		return jpa.findAllBySensor_IdOrderDataInic(sensorId)
+		return jpa.findAllBySensor_IdOrderByDataInicioAsc(sensorId)
 				.stream()
 				.map(this::toDomain)
 				.toList();

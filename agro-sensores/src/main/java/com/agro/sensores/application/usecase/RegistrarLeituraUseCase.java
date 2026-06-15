@@ -30,12 +30,15 @@ public class RegistrarLeituraUseCase {
 		
 		// 1. definir uma var para receber como valor a busca pelo sensor
 		var sensor = sensorRepo.buscarPorId(sensorId)
-				.orElseThrow(() -> new RuntimeException("Sensor não encontrado!"));		
+                .orElseThrow(() -> new RuntimeException("Sensor não encontrado"));	
 		
 		// 2. definir uma nova var para receber como valor a buscar por sensor e data
-		var localizacaoHistorica = localizacaoRepo.buscarPorSensorEData(sensorId, dataHora)
-				.orElseGet(() -> localizacaoRepo.buscarAtivaPorSensor(sensorId)
-						.orElseThrow(() -> new RuntimeException("Sensor sem localização!")));
+		 var localizacaoHistorica = localizacaoRepo
+	                .buscarPorSensorEData(sensorId, dataHora)
+	                .orElseGet(() ->
+	                    localizacaoRepo.buscarAtivaPorSensor(sensorId)
+	                        .orElseThrow(() -> new RuntimeException("Sensor sem localização"))
+	                );
 		
 		// 3. definir o objeto do domain Leitura - pacote de dados
 		Leitura leitura = new Leitura(

@@ -49,7 +49,7 @@ public class Sensor {
 	// o UseCase correto
 	public void alterarLocalizacao(String novaLocalizacao) {
 		if(novaLocalizacao == null || novaLocalizacao.isBlank()) {
-			throw new ValidacaoException("A nova localização não pode ser vaiza!");
+			throw new ValidacaoException("A nova localização não pode ser vazia!");
 		}
 		
 		// caso o contrario...

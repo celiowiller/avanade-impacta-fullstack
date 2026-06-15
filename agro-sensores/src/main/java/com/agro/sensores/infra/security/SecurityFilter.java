@@ -33,30 +33,30 @@ public class SecurityFilter extends OncePerRequestFilter{
 	// este é o método que assume o "papel de filtro de segurança" das APIs
 	// por aqui terão de passar todas as requisições HTTP - portanto, estas requisições 
 	// aqui, serão interceptadas
-	@Override 
+	@Override
 	protected void doFilterInternal(
-			HttpServletRequest request,
-			HttpServletResponse response,
-			FilterChain filterChain
-			) throws ServletException, IOException {
+	        HttpServletRequest request,
+	        HttpServletResponse response,
+	        FilterChain filterChain
+	) throws ServletException, IOException {
 		
 		// vamos, neste momento, definir uma prop para receber como valor o token
 		String token = recuperarToken(request);
 		
 		// verificar o valor da prop token
 		if(token != null) {
-			
+			try {
 			// agora, precisamos obter o dados de subject do token e, tambem, fazer 
 			// uma busca no dado de login - a partir do Jparepository
 			// portanto, aqui, vamos fazer uso das DIs
 			String subject = tokenService.getSubject(token); 
-			var login = repository.findByLogin(subject);
+			var usuarioOpt  = repository.findByLogin(subject);
 			
 			// verificando se a var login, realmente, recebeu algum valor
-			if(login.isPresent()) {
+			if(usuarioOpt.isPresent()) {
 				// se recebeu, acessamos este valor e geramos um objeto que será nomeado como 
 				// authentication
-				var usuario = login.get();
+				var usuario = usuarioOpt.get();
 				// aqui, temos o objeto de autenticação - com origem no springsecurity
 				// onde passamos o usuario, depois - null - parametro de senha e o método 
 				// getAuthotities() com as roles - definido em UsuarioEntity
@@ -74,7 +74,11 @@ public class SecurityFilter extends OncePerRequestFilter{
 				// do Spring; é, a partir deste momento que o Spring sabe quem está "logando"
 				// e se ele tem permissão para acessar o endpoint requisitado
 				
-			}// aqui, fecha o if interno
+			 }// aqui, fecha o if interno
+			}catch (Exception e) {
+	            // token inválido → NÃO autentica ninguém
+	            SecurityContextHolder.clearContext();
+	        }
 		}// aqui, fecha o if principal
 		filterChain.doFilter(request, response); // aqui, é linha que diz que o "trabalho esta 
 		// feito"; ou seja, é a linha segue com a requisição - para o endpoint adequado (response) - e 
@@ -90,7 +94,7 @@ public class SecurityFilter extends OncePerRequestFilter{
 		
 		// 2. se a var authorizationHeader estiver "vazia" ou não começar com "Beaer" 
 		// vamos retornar nulo
-		if(authorizationHeader == null || !authorizationHeader.startsWith("Bearer")) {
+		if(authorizationHeader == null || !authorizationHeader.startsWith("Bearer ")) {
 			return null;
 		}
 		

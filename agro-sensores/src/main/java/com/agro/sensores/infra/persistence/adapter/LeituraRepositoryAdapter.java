@@ -1,5 +1,7 @@
 package com.agro.sensores.infra.persistence.adapter;
 
+import java.util.List;
+
 import org.springframework.stereotype.Component;
 
 import com.agro.sensores.domain.models.Leitura;
@@ -7,6 +9,7 @@ import com.agro.sensores.domain.models.Sensor;
 import com.agro.sensores.domain.repository.LeituraRepository;
 import com.agro.sensores.infra.persistence.entity.LeituraEntity;
 import com.agro.sensores.infra.persistence.entity.SensorEntity;
+import com.agro.sensores.infra.persistence.repository.JpaLeituraRepository;
 import com.agro.sensores.infra.persistence.repository.JpaSensorLocalizacaoRepository;
 import com.agro.sensores.infra.persistence.repository.JpaSensorRepository;
 
@@ -16,11 +19,23 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class LeituraRepositoryAdapter implements LeituraRepository {
 	
-	private final JpaSensorLocalizacaoRepository jpa;
+	private final JpaLeituraRepository jpa;
 	private final JpaSensorRepository sensorJpa;
+
 	
 	// ------------------------------------------------------
-	
+	@Override
+	public Leitura salvar(Leitura leitura) {
+		return toDomain(jpa.save(toEntity(leitura)));
+	}
+
+	@Override
+	public List<Leitura> buscarPorSensor(String sensorId) {
+		return jpa.findBySensor_IdOrderByDataHoraDesc(sensorId)
+				.stream()
+				.map(this::toDomain)
+				.toList();
+	}
 	// ------------------------------------------------------
 	
 	// =======================================
