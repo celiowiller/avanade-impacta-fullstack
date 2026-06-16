@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>AngularAgroSensores</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body>
+  <!-- podemos, então , deduzir que: de alguma forma o conteudo do arquivo app.component.html, está sndo injetado aqui, no index.html; quem nos indica esta pratica é o "par de tags" <app-root></app-root> -> esta é uma tag usada no contexto html Mas seu pleno funcionamento se da PELO CONTEXTO DO ANGULAR!!!! PORTANTO, ESTE NÃO É UM ATRIBUTO HTML PADRÃO -->
+  <app-root></app-root> <!-- aqui podemos entender, então , que nosso componente "principal" (app.component), com uso deste par tags, passa a "fazer parte" do arquivo index.html-->
+</body>
+</html>
