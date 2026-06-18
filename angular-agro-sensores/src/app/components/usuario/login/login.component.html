@@ -1,19 +1,20 @@
-<p>login works!</p>
 <div class="login-wrapper">
   <mat-card class="login-card">
     <mat-card-header>
       <mat-card-title>{{tituloComp }}</mat-card-title>
-      <mat-card-subtitle>Autenticação de Sistema</mat-card-subtitle>
+      <mat-card-subtitle>{{ subtituloComp }}</mat-card-subtitle>
     </mat-card-header>
 
     <mat-card-content>
       <form [formGroup]="loginFormulario" (ngSubmit)="aoSubmeter()">
+
         <mat-form-field appearance="outline" class="full-width">
           <mat-label>Login do Usuário</mat-label>
           <input matInput formControlName="login" placeholder="Ex: seu.login@mail.com">
           @if (loginFormulario.get('login')?.invalid && loginFormulario.get('login')?.touched) {
             <mat-error>O login é obrigatório.</mat-error>
           }
+          <!-- *ngIf ou @if(): a diretiva estrutural if, independente de sua descrição, indica que, a partir de uma expressão  de teste, há uma decisão a ser tomada: incluir ou excluir um determinado "pedaço" da view no DOM(Documetn Objetc Model)-->
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="full-width">

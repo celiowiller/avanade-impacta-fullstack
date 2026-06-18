@@ -1,1 +1,62 @@
-<p>cadastro works!</p>
+<!-- definir a view do componente-->
+<div class = "cadastro-wrapper">
+    <mat-card class = "cadastro-card">
+
+            <mat-card-header>
+                <mat-card-title>{{ tituloComp }}</mat-card-title>   
+                    <!-- acima, temos a interpolation binding: que visa fazer o seguinte -> simplesmente vincular na view um valor de prop descrita na camada lógica e exibi-la - .ts do componente; o contexto de vinculção é o uso das {{ }} chaves duplas-->
+
+                <mat-card-subtitle>{{ subtituloComp }}</mat-card-subtitle>
+            </mat-card-header>
+
+            <!-- agora, precisamos criar o formulario-->
+             <mar-card-content>
+                <form [formGroup] = "cadastroFormulario" (ngSubmit) = "aoCadastrar()">
+                    <!-- acima, temos, definido, a modalidade property binding: significa que o contexto de vinculação é estabelcido pelo uso dos colchetes []; este binding é muito poderoso - por que? R.: Porque o properrty binding - além de vincular uma prop e exibir seu valor, qunado necessario, tambem pode determinar comportamentos par aa view 
+                     
+                    para este proposito, geralmente, os property bindings precisam definir a "natureza"/tipo da vinculação
+                    
+                    parte 2: temos o event binding -> seus contexto de vinculação é o uso do caracteres () parenteses; seu objetivo, quando acionado, é disparar, a partir da chamada da função/método na view, s tsarefa, descrita no método, à sua execução; da mesma forma que fizemos com porperty binding , tambem precisamos definir a natureza da vinculação -->
+
+                    <mat-form-field appearance = "outline" class = "full-width">
+                        <mat-label>Login</mat-label>
+                        <input type="email" placeholder="Insira seu email" matInput formControlName = "login" />
+                        <!-- matInput: recurso do material para "transformar" este input html num material input; formCOntrolName: esta é a diretiva que determina que este input sera´ "controlado" pela prop login - dexcrita no form bulder na camda logica do comp-->
+                    </mat-form-field>
+
+                     <mat-form-field appearance = "outline" class = "full-width">
+                        <mat-label>Senha</mat-label>
+                        <input type="password" placeholder="Insira sua senha" matInput formControlName = "senha" />
+                     </mat-form-field>
+
+                     <mat-form-field appearance = "outline" class = "full-width">
+                        <mat-label>Perfi/Role</mat-label>
+                        <mat-select formControlName = "role">
+                            <!-- *ngFor ou @for(): independente da forma como a diretiva esta descrita devemos considerar que esta é uma diretiva estrutural do angular; esta direvia faz o seguinte -> aos er associada a uma expressão de teste a diretiva REPETE - UMA DETERMINA ESTRUTURA HTML-->
+                            @for(perfil of perfisDisponiveis; track perfil){
+                                <mat-option [value] = "perfil">{{ perfil }}</mat-option>
+                            }
+                        </mat-select>
+                     </mat-form-field>
+
+
+                </form>
+
+                <div class="button-group">
+                    <!--transformamos este button num material button -->
+                    <button
+                        mat-button 
+                        type = "button"
+                        (click) = "cancelar()"
+                    >CANCELAR</button>
+
+                    <button
+                        mat-raised-button
+                        color = "accent"
+                        type = "submit"
+                        [disabled] = "cadastroFormulario.invalid"
+                    >FINALIZAR CADASTRO</button>
+                </div>
+             </mar-card-content>
+    </mat-card>
+</div>

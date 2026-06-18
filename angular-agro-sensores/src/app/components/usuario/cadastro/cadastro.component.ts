@@ -10,9 +10,12 @@ import { UsuarioService } from '../../../services/usuario.service'; // aqui, est
 
 import { Router } from '@angular/router'; // recurso que irá auxiliar na definição de roteamento - a partir da estrutura logica do componente
 
+// precisamos, agora, importar o modulo Material
+import { MaterialModule } from '../../../shared/material/material.module';
+
 @Component({
   selector: 'app-cadastro',
-  imports: [CommonModule, ReactiveFormsModule], // array indicado para o "registro" dos recursos de módulo
+  imports: [CommonModule, ReactiveFormsModule, MaterialModule], // array indicado para o "registro" dos recursos de módulo
   templateUrl: './cadastro.component.html',
   styleUrl: './cadastro.component.css'
 })
@@ -43,7 +46,7 @@ export class CadastroComponent {
   ========================================================================
   */
 
-  // 1ª operação: definir a prop que receberá como valor os apres que serão atribuidos dos dados obtidos pelo formulario **** aqui, estamos trabalhando com a modalidade - do angular -  model-driven form: pois o comportamento do fomulario é "controlado" pela camada lógica! 
+  // 1ª operação: definir a prop que receberá como valor os pares que serão atribuidos dos dados obtidos pelo formulario **** aqui, estamos trabalhando com a modalidade - do angular -  model-driven form: pois o comportamento do fomulario é "controlado" pela camada lógica! 
   cadastroFormulario = this.fb.group({
     login: ['', [Validators.required, Validators.email]] , // ...@t.com
     senha: ['', [Validators.required, Validators.minLength(6)]],
@@ -65,7 +68,7 @@ export class CadastroComponent {
   }
 
 
-  // 3ª operação: definir o método que cancela, caso seja necessario, o cadstro e redireciona o usuario para a tela de login
+  // 3ª operação: definir o método que cancela, caso seja necessario, o cadastro e redireciona o usuario para a tela de login
   cancelar(): void{
     this.router.navigate(['/login'])
   }

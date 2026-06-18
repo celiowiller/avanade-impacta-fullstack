@@ -72,7 +72,7 @@ export class SensorListComponent implements OnInit {
       })
   }
 
-  // passo 2: exclusão de sensor
+  // passo 3: exclusão de sensor
   excluirSensor(id: string):void{
     if(confirm('Tem certeza que deseaj excluir, definitivamente, este sensor? ')){
       this.sensorService.deletar(id).subscribe({
@@ -94,7 +94,7 @@ export class SensorListComponent implements OnInit {
       sensor.localizacao
     )
 
-  if (!novaLoc || novaLoc === sensor.localizacao) return;
+  if (!novaLoc || novaLoc === sensor.localizacao) return
 
     this.sensorService.atualizarLocalizacao(sensor.id, novaLoc).subscribe({
       next: () => this.carregarDadosDosSensores(),
@@ -102,7 +102,7 @@ export class SensorListComponent implements OnInit {
     })
   }
 
-  // passo 3: definir um método que redireciona o usuario para o componente de cadastro de um novo sensor
+  // passo 4: definir um método que redireciona o usuario para o componente de cadastro de um novo sensor
   navegarParaCadastro(): void {
   // Verificação de segurança extra
   if (this.usuarioService.obterRole() !== UserRoleModel.ADMIN) {
@@ -111,7 +111,7 @@ export class SensorListComponent implements OnInit {
     }
     this.roteador.navigate(['/configuracoes/novo-sensor']);
   }
-  // passo 4: definir um método que redireciona o usuario para o componente de ver detalhes de um sensor
+  // passo 5: definir um método que redireciona o usuario para o componente de ver detalhes de um sensor
   verDetalhes(id: string): void{
     // Ajustado para o componente Dashboard que criamos
     this.roteador.navigate(['/sensores/detalhes', id])

@@ -14,6 +14,8 @@ import { UsuarioService } from '../../../services/usuario.service';
 export class LoginComponent {
   // titulo componente
   tituloComp: string = 'Login'
+  subtituloComp: string = 'Autenticação de Sistema'
+  
   private formularioConstrutor = inject(FormBuilder)
   private servicoUsuario = inject(UsuarioService)
   private roteador = inject(Router)
