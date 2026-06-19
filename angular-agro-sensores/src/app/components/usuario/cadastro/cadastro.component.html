@@ -10,7 +10,7 @@
             </mat-card-header>
 
             <!-- agora, precisamos criar o formulario-->
-             <mar-card-content>
+             <mat-card-content>
                 <form [formGroup] = "cadastroFormulario" (ngSubmit) = "aoCadastrar()">
                     <!-- acima, temos, definido, a modalidade property binding: significa que o contexto de vinculação é estabelcido pelo uso dos colchetes []; este binding é muito poderoso - por que? R.: Porque o properrty binding - além de vincular uma prop e exibir seu valor, qunado necessario, tambem pode determinar comportamentos par aa view 
                      
@@ -57,6 +57,6 @@
                         [disabled] = "cadastroFormulario.invalid"
                     >FINALIZAR CADASTRO</button>
                 </div>
-             </mar-card-content>
+             </mat-card-content>
     </mat-card>
 </div>

@@ -22,7 +22,8 @@ export interface SensorModel {
     id: string
     nome: string
     localizacao: string // localização atual simplificada
-    
+    tipo: TipoSensor
+    ativo: boolean
     // definir, abaixo, novas props para "suportar" os Usescases de Dashboard e Historico
     historico?: SensorLocalizacao[]
     leituras?: LeituraModel[]
